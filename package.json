@@ -1,0 +1,23 @@
+{
+  "name": "memory",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "heroku-postbuild": "npm install && npm run rs:build",
+    "rs:start": "react-scripts start",
+    "rs:build": "react-scripts build",
+    "rs:test": "react-scripts test --env=jsdom",
+    "rs:eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000"
+}
