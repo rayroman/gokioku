@@ -5,7 +5,7 @@
 
 import C from "./constants";
 import fetch from "isomorphic-fetch";
-import {host} from "../../server/config";
+import {host} from "../config";
 
 /*
 Setting the difficulty and fetching the characters

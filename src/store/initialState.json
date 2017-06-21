@@ -1,7 +1,7 @@
 {
-  "difficulty": null,
+  "difficulty": "EASY",
   "characters": [],
-  "counts": {
+  "count": {
     "total": 0,
     "correct": 0
   },
