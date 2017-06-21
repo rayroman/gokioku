@@ -4,7 +4,7 @@
  */
 
 import storeFactory from "../index";
-import {fetchCharactersAction} from "../actions";
+import {fetchCharactersAction, addErrorAction, clearErrorAction} from "../actions";
 import C from "../constants";
 import nock from "nock";
 import fetch from "isomorphic-fetch";
@@ -54,5 +54,28 @@ describe("API fetch", () => {
                 expect(currState.characters.length).toBe(10);
                 done();
             });
+    });
+});
+
+describe("Error handling", () => {
+    let store, errors;
+    beforeEach(() => {
+        errors = [
+            "Documents not found",
+            "Database not available"
+        ];
+        store = storeFactory({
+            errors: []
+        });
+        store.dispatch(addErrorAction(errors[0]));
+    });
+
+    test("adding and deleting errors", () => {
+        expect.assertions(3);
+        store.dispatch(addErrorAction(errors[1]));
+        expect(store.getState().errors.length).toBe(2);
+        store.dispatch(clearErrorAction(0));
+        expect(store.getState().errors.length).toBe(1);
+        expect(store.getState().errors[0]).toBe("Database not available");
     });
 });

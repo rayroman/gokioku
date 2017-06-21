@@ -20,9 +20,17 @@ const setCharactersAction = (charsDoc = {}) => ({
     payload: charsDoc
 });
 
+/*
+Modify errors
+ */
 export const addErrorAction = err => ({
     type: C.ADD_ERROR,
     payload: err
+});
+
+export const clearErrorAction = index => ({
+    type: C.CLEAR_ERROR,
+    payload: index
 });
 
 export const fetchCharactersAction = difficulty => (dispatch, getState) => {
