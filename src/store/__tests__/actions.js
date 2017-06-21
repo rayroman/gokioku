@@ -10,7 +10,7 @@ import nock from "nock";
 import fetch from "isomorphic-fetch";
 
 describe("API fetch", () => {
-    let store, diff;
+    let store, diff, currState;
     beforeEach(() => {
         nock("http://localhost:5000")
             .get("/api/difficulty/EASY")
@@ -45,21 +45,14 @@ describe("API fetch", () => {
             });
     });
 
-    /*
-    describe("change of state", () => {
-        let currState;
-        beforeAll(() => {
-            store.dispatch(fetchCharactersAction(diff));
-            currState = store.getState();
-        });
-
-        test("state should show difficulty", () => {
-            expect(currState.difficulty).toBe(diff);
-        });
-
-        test("characters should be limited to unique number", () => {
-            expect(currState.characters.length).toBe(10);
-        });
+    test("state should show difficulty and characters", done => {
+        expect.assertions(2);
+        store.dispatch(fetchCharactersAction(diff))
+            .then(() => {
+                currState = store.getState();
+                expect(currState.difficulty).toBe(diff);
+                expect(currState.characters.length).toBe(10);
+                done();
+            });
     });
-    */
 });

@@ -5,6 +5,7 @@
 
 import C from "./constants";
 import fetch from "isomorphic-fetch";
+import {host} from "../../server/config";
 
 /*
 Setting the difficulty and fetching the characters
@@ -31,7 +32,7 @@ export const fetchCharactersAction = difficulty => (dispatch, getState) => {
     // Show that characters are being fetched
     dispatch({type: C.FETCH_CHARACTERS});
 
-    return fetch(`/api/difficulty/${difficulty}`)
+    return fetch(`${host}/api/difficulty/${difficulty}`)
         .then(response => response.json())
         .then(doc => {
             if (doc.setting) {
