@@ -8,12 +8,20 @@ import './index.css';
 import {Provider} from "react-redux";
 import storeFactory from "./store/index";
 import init from "./store/initialState.json"
+import Home from "./components/Home";
+
+// Router stuff
+import {Router} from "react-router";
+import createBrowserHistory from "history/createBrowserHistory";
+
 const store = storeFactory(init);
 
 // Initialize the app
 render(
     <Provider store={store}>
-        <App/>
+        <Router history={createBrowserHistory()}>
+            <Home/>
+        </Router>
     </Provider>,
     document.getElementById('root'));
 registerServiceWorker();
