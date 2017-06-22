@@ -47,6 +47,25 @@ export const correct = (state = 0, action) => (
         state
 );
 
+export const retire = (state = {}, action) => {
+    switch (action.type) {
+        case C.RETIRE_CARD:
+            // Detect to see if the character is already retired; if it is, do nothing; if it isn't, turn it to true
+            return (!state[action.payload]) ?
+                Object.assign({}, state, {[action.payload]: true}) :
+                state;
+        case C.CREATE_RETIRE:
+            // Payload is an array of characters that should be mapped to values false (no characters are retired at first)
+            let retire = {};
+            action.payload.forEach(char => {
+                retire[char] = false;
+            });
+            return retire;
+        default:
+            return state;
+    }
+};
+
 export const selection = (state = [], action) => {
     switch (action.type) {
         case C.PUSH_SELECTION:
@@ -76,6 +95,7 @@ export const errors = (state = [], action) => {
 export default combineReducers({
     difficulty,
     characters,
+    retire,
     count: combineReducers({
         total,
         correct

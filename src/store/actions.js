@@ -46,6 +46,12 @@ export const fetchCharactersAction = difficulty => (dispatch, getState) => {
             if (doc.setting) {
                 // Set the characters and cancel the fetching
                 dispatch(setCharactersAction(doc));
+
+                // Create the retire object with the characters we already selected
+                let pureChars = getState().characters.map(item => item.char);
+                console.assert(typeof pureChars[0] === "string", "Something went wrong pulling characters...");
+                dispatch(createRetireAction(pureChars));
+
                 dispatch({type: C.CANCEL_FETCHING});
             } else {
                 // We don't get what we want
@@ -91,3 +97,15 @@ export const emptySelectionAction = () => ({
     type: C.EMPTY_SELECTION
 });
 
+/*
+Retiring cards
+ */
+export const retireCardAction = card => ({
+    type: C.RETIRE_CARD,
+    payload: card
+});
+
+export const createRetireAction = chars => ({
+    type: C.CREATE_RETIRE,
+    payload: chars
+});

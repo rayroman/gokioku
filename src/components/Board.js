@@ -42,7 +42,6 @@ class Board extends Component {
                 }
 
                 // Then set the state
-                console.log(boardItems);
                 this.setState({boardItems, loading: null});
             });
     }
@@ -77,7 +76,8 @@ class Board extends Component {
 
 // Redux stuff
 const mapStateToProps = state => ({
-    characters: state.characters
+    characters: state.characters,
+    retire: state.retire
 });
 
 const mapDispatchToProps = dispatch => ({

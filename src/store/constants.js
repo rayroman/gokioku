@@ -17,6 +17,8 @@ const constants = {
     // Clicking the cards
     PUSH_SELECTION: "PUSH_SELECTION",
     EMPTY_SELECTION: "EMPTY_SELECTION",
+    RETIRE_CARD: "RETIRE_CARD",
+    CREATE_RETIRE: "CREATE_RETIRE",
 
     // Error handling
     ADD_ERROR: "ADD_ERROR",
