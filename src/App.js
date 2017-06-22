@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {fetchCharactersAction} from "./store/actions";
 import {Switch, Route} from "react-router";
 import Home from "./components/Home";
+import Whoops from "./components/Whoops";
 
 class App extends Component {
     render() {
@@ -14,10 +15,12 @@ class App extends Component {
                 <Route path="/:difficulty"
                        render={({match}) => {
                            const settings = ["easy", "hard"]; // may add more later
-                           // Todo: add return
+                           return (settings.includes(match.params.difficulty)) ?
+                               <div>{match.params.difficulty}</div> :
+                               <Whoops match={match}/>
                        }}
                 />
-                {/*Todo: add catch-all route*/}
+                <Route component={Whoops}/>
             </Switch>
         )
     }

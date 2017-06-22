@@ -13,4 +13,16 @@ body {
   font-family: "Noto Sans", sans-serif;
   background-color: #1d2636;
   color: whitesmoke;
+  /* Kerning */
+  text-rendering: optimizeLegibility;
+  font-kerning: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+code {
+  font-family: "Inconsolata", monospace;
+  color: #ffa83c;
 }
