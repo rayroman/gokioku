@@ -17,12 +17,14 @@ class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boardItems: []
+            boardItems: [],
+            loading: "Loading..."
         }
     }
 
     componentDidMount() {
         const {loadData, difficulty} = this.props;
+
         loadData(difficulty.toUpperCase())
             .then(() => {
                 const {characters: chars} = this.props;
@@ -37,13 +39,14 @@ class Board extends Component {
 
                 // Then set the state
                 console.log(boardItems);
-                this.setState({boardItems});
+                this.setState({boardItems, loading: null});
             });
     }
 
     render() {
         return (
             <article className="Board">
+                <div>{this.state.loading ? this.state.loading : null}</div>
                 <section>
 
                 </section>
