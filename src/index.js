@@ -20,7 +20,7 @@ const store = storeFactory(init);
 render(
     <Provider store={store}>
         <Router history={createBrowserHistory()}>
-            <App/>
+            <Home/>
         </Router>
     </Provider>,
     document.getElementById('root'));
