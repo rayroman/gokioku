@@ -1,0 +1,56 @@
+.Home {
+    width: 30%;
+    margin: 25% auto 0;
+}
+
+.Home a {
+    color: #a6b0d4;
+}
+
+.Home ul {
+    list-style-type: none;
+    margin: 2% 0;
+    padding: 0;
+}
+
+.Home ul li {
+    border-bottom: solid 1px #3b4c68;
+    padding-left: 1em;
+    position: relative;
+    color: #a6b0d4;
+}
+
+.Home ul li:hover, .Home a:hover {
+    color: #ffa83c;
+}
+
+.Home ul li:active, .Home a:active {
+    color: #fa6327;
+}
+
+.Home ul li:before {
+    color: inherit;
+    content: "\279C";
+    display: block;
+    padding: 0.5em 20px;
+    position: absolute;
+    z-index: -1;
+    right: 0;
+}
+
+.Home ul li a {
+    color: inherit;
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em 0;
+}
+
+.Home ul li:first-child {
+    border-top: solid 1px #3b4c68;
+}
+
+.Home .git {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
