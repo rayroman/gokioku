@@ -6,6 +6,9 @@ Colors: (plucked from https://www.behance.net/gallery/53249885/LiquidPro-Sketch-
   Main Light: #ffa83c
   Light Accent: #fa6327
 */
+html {
+  font-size: 18px;
+}
 
 body {
   margin: 0;
@@ -24,5 +27,6 @@ h1, h2, h3, h4, h5, h6 {
 
 code {
   font-family: "Inconsolata", monospace;
+  font-size: 1.1rem;
   color: #ffa83c;
 }

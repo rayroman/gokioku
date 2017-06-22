@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {connect} from "react-redux";
-import {fetchCharactersAction} from "./store/actions";
 import {Switch, Route} from "react-router";
 import Home from "./components/Home";
 import Whoops from "./components/Whoops";
+import Board from "./components/Board";
 
 class App extends Component {
     render() {
@@ -16,7 +15,7 @@ class App extends Component {
                        render={({match}) => {
                            const settings = ["easy", "hard"]; // may add more later
                            return (settings.includes(match.params.difficulty)) ?
-                               <div>{match.params.difficulty}</div> :
+                               <Board difficulty={match.params.difficulty} /> :
                                <Whoops match={match}/>
                        }}
                 />
