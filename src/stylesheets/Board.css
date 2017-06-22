@@ -1,0 +1,27 @@
+.Board {
+    width: 70%;
+    margin: 100px auto 0;
+}
+
+.Board #difficulty {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.Board #difficulty h1 {
+    flex-shrink: 2;
+}
+
+.Board #difficulty ul {
+    flex-grow: 2;
+}
+
+.Board ul.rating {
+    list-style-type: none;
+    color: #fa6327;
+}
+
+.Board ul.rating li {
+    display: inline-block;
+}

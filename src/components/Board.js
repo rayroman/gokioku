@@ -7,6 +7,10 @@
 
 // React
 import React, {Component} from "react";
+import FaAsterisk from "react-icons/lib/fa/asterisk";
+
+// CSS
+import "../stylesheets/Board.css";
 
 // Redux
 import {fetchCharactersAction} from "../store/actions";
@@ -43,10 +47,23 @@ class Board extends Component {
             });
     }
 
+    makeStars() {
+        return (
+            <ul className="rating">
+                {new Array(this.props.stars).fill(undefined).map((_, index) => <FaAsterisk key={index}/>)}
+            </ul>
+        )
+    }
+
     render() {
+        const {difficulty} = this.props;
         return (
             <article className="Board">
                 <div>{this.state.loading ? this.state.loading : null}</div>
+                <div id="difficulty">
+                    <h1>{difficulty}</h1>
+                    {this.makeStars()}
+                </div>
                 <section>
 
                 </section>
