@@ -60,15 +60,15 @@ class Board extends Component {
         return (
             <article className="Board">
                 <div>{this.state.loading ? this.state.loading : null}</div>
-                <div id="difficulty">
+                <header id="difficulty">
                     <h1>{difficulty}</h1>
                     {this.makeStars()}
-                </div>
-                <section>
-                    <CardList boardItems={this.state.boardItems}/>
-                </section>
-                <section>
-
+                </header>
+                <section id="main">
+                    <div className="grid">
+                        <CardList boardItems={this.state.boardItems}/>
+                    </div>
+                    <div className="score"></div>
                 </section>
             </article>
         )
