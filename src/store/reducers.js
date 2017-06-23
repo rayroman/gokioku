@@ -32,17 +32,18 @@ export const characters = (state = [], action) => {
     }
 };
 
-export const total = (state = 0, action) => (
-    (action.type === C.INCREMENT_TOTAL) ?
-        state + 1 :
-        state
-);
-
-export const correct = (state = 0, action) => (
-    (action.type === C.INCREMENT_CORRECT) ?
-        state + 1 :
-        state
-);
+export const count = (state = {total: 0, correct: 0}, action) => {
+    switch (action.type) {
+        case C.INCREMENT_TOTAL:
+            return Object.assign({}, state, {total: state.total + 1});
+        case C.INCREMENT_CORRECT:
+            return Object.assign({}, state, {correct: state.correct + 1});
+        case C.RESET_ALL:
+            return {total: 0, correct: 0};
+        default:
+            return state;
+    }
+};
 
 export const retire = (state = {}, action) => {
     switch (action.type) {
@@ -58,6 +59,12 @@ export const retire = (state = {}, action) => {
                 retire[char] = false;
             });
             return retire;
+        case C.RESET_RETIRE:
+            let copy = Object.assign({}, state);
+            Object.keys(copy).forEach(key => {
+                copy[key] = false;
+            });
+            return copy;
         default:
             return state;
     }
@@ -115,10 +122,7 @@ export default combineReducers({
     difficulty,
     characters,
     retire,
-    count: combineReducers({
-        total,
-        correct
-    }),
+    count,
     guess,
     active,
     errors

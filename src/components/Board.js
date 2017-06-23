@@ -23,8 +23,7 @@ class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boardItems: [],
-            loading: "Loading..."
+            boardItems: []
         }
     }
 
@@ -44,7 +43,7 @@ class Board extends Component {
                 }
 
                 // Then set the state
-                this.setState({boardItems, loading: null});
+                this.setState({boardItems});
             });
     }
 
@@ -60,7 +59,6 @@ class Board extends Component {
         const {difficulty} = this.props;
         return (
             <article className="Board">
-                <div>{this.state.loading ? this.state.loading : null}</div>
                 <header id="difficulty">
                     <h1>{difficulty}</h1>
                     {this.makeStars()}

@@ -6,7 +6,7 @@
 import storeFactory from "../index";
 import {
     fetchCharactersAction, addErrorAction, clearErrorAction, pushGuessAction,
-    emptyGuessAction
+    emptyGuessAction, selectionAction, resetAllAction, tickCorrectAction, tickTotalAction
 } from "../actions";
 import C from "../constants";
 import nock from "nock";
@@ -84,11 +84,34 @@ describe("Error handling", () => {
     });
 });
 
-describe("Selections", () => {
-    let store, chars = ["a", "b"], state;
+describe("Counts", () => {
+    let store, state;
     beforeEach(() => {
         store = storeFactory({
-            selection: [],
+            count: {
+                total: 5,
+                correct: 3
+            }
+        })
+    });
+
+    test("incrementing the counts", () => {
+        store.dispatch(tickTotalAction());
+        store.dispatch(tickCorrectAction());
+        expect(store.getState().count).toMatchObject({total: 6, correct: 4});
+    });
+
+    test("resetting the counts", () => {
+        store.dispatch(resetAllAction());
+        expect(store.getState().count).toMatchObject({total: 0, correct: 0});
+    });
+});
+
+describe("Selections", () => {
+    let store, chars = [{char: "a", index: 1}, {char: "b", index: 2}, {char: "a", index: 3}], state;
+    beforeEach(() => {
+        store = storeFactory({
+            guess: [],
             retire: {
                 "a": false,
                 "b": false
@@ -102,53 +125,50 @@ describe("Selections", () => {
 
     test("adding a single selection", () => {
         expect.assertions(2);
-        store.dispatch(pushGuessAction(chars[0]));
+        store.dispatch(selectionAction(chars[0]));
         state = store.getState();
         expect(state.count.total).toBe(0);
-        expect(state.selection.length).toBe(1);
+        expect(state.guess.length).toBe(1);
     });
 
     test("adding two dissimilar selections", () => {
         expect.assertions(2);
-        store.dispatch(pushGuessAction(chars[0]));
-        store.dispatch(pushGuessAction(chars[1]));
+        store.dispatch(selectionAction(chars[0]));
+        store.dispatch(selectionAction(chars[1]));
         state = store.getState();
-
-        // Use the selector
-        incrementCount(state);
 
         expect(state.count).toMatchObject({correct: 0, total: 1});
-        expect(state.selection.length).toBe(2);
+        expect(state.guess.length).toBe(2);
     });
 
-    test("adding two similar selections", () => {
+    test("adding two similar selections of the same index", () => {
         expect.assertions(2);
-        store.dispatch(pushGuessAction(chars[0]));
-        store.dispatch(pushGuessAction(chars[0]));
+        store.dispatch(selectionAction(chars[0]));
+        store.dispatch(selectionAction(chars[0]));
         state = store.getState();
 
-        incrementCount(state);
+        // Equivalent to selecting and deselecting
+        expect(state.count).toMatchObject({correct: 0, total: 0});
+        expect(state.retire).toMatchObject({"a": false, "b": false});
+    });
+
+    test("adding two similar selections of different index", () => {
+        expect.assertions(2);
+        store.dispatch(selectionAction(chars[0]));
+        store.dispatch(selectionAction(chars[2]));
+        state = store.getState();
 
         expect(state.count).toMatchObject({correct: 1, total: 1});
         expect(state.retire).toMatchObject({"a": true, "b": false});
     });
 
-    test("adding more than two selections", () => {
-        store.dispatch(pushGuessAction(chars[0]));
-        store.dispatch(pushGuessAction(chars[0]));
-        store.dispatch(pushGuessAction(chars[0]));
-
-        expect(store.getState().selection.length).toBe(2);
-    });
-
     test("adding two already-retired similar selections", () => {
         expect.assertions(2);
         for (let i = 0; i < 2; i++) {
-            store.dispatch(pushGuessAction(chars[0]));
-            store.dispatch(pushGuessAction(chars[0]));
+            store.dispatch(selectionAction(chars[0]));
+            store.dispatch(selectionAction(chars[2]));
             state = store.getState();
 
-            incrementCount(state);
             store.dispatch(emptyGuessAction());
         }
         state = store.getState();
@@ -157,9 +177,9 @@ describe("Selections", () => {
     });
 
     test("clearing selections", () => {
-        store.dispatch(pushGuessAction(chars[0]));
+        store.dispatch(selectionAction(chars[0]));
         store.dispatch(emptyGuessAction());
 
-        expect(store.getState().selection.length).toBe(0);
+        expect(store.getState().guess.length).toBe(0);
     });
 });

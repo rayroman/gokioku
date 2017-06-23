@@ -83,8 +83,8 @@ export const tickCorrectAction = () => ({
     type: C.INCREMENT_CORRECT
 });
 
-export const resetTotalAction = () => ({
-    type: C.RESET_TOTAL
+export const resetAllAction = () => ({
+    type: C.RESET_ALL
 });
 
 // correct selection available in reselect (two correct selections = increment correct)
@@ -118,6 +118,10 @@ export const retireCardAction = index => ({
 export const createRetireAction = chars => ({
     type: C.CREATE_RETIRE,
     payload: chars
+});
+
+export const resetRetireAction = () => ({
+    type: C.RESET_RETIRE
 });
 
 /*
