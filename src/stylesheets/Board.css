@@ -25,3 +25,13 @@
 .Board ul.rating li {
     display: inline-block;
 }
+
+.Board #main .grid {
+    width: 60%;
+    float: left;
+}
+
+.Board #main .score {
+    width: 40%;
+    float: left;
+}

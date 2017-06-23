@@ -1,18 +1,28 @@
 .Card {
     background-color: #293246;
-    border-radius: 3px;
-    border: solid 1px #82889e;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+    margin: 5px;
+    flex: 1 0 auto;
+    position: relative;
     cursor: pointer;
 }
 
+.Card:after {
+    content: "";
+    float: left;
+    display: block;
+    padding-top: 100%;
+}
+
 .char {
-    font-size: 2em;
-    padding: 0.5em;
-    line-height: 1em;
-    height: inherit;
+    font-size: 4vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     visibility: hidden;
 }
 

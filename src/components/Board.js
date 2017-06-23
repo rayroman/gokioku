@@ -68,7 +68,9 @@ class Board extends Component {
                     <div className="grid">
                         <CardList boardItems={this.state.boardItems}/>
                     </div>
-                    <div className="score"></div>
+                    <div className="score">
+                        Hello world! Hello world! Hello world! Hello world!
+                    </div>
                 </section>
             </article>
         )
