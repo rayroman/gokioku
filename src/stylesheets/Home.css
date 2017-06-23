@@ -1,6 +1,29 @@
-.Home {
-    width: 30%;
-    margin: 200px auto 0;
+@media all and (max-width: 500px) {
+    .Home {
+        width: 100%;
+        margin: 100px auto 0;
+    }
+}
+
+@media all and (min-width: 501px) and (max-width: 900px) {
+    .Home {
+        width: 60%;
+        margin: 150px auto 0;
+    }
+}
+
+@media all and (min-width: 901px) and (max-width: 1200px) {
+    .Home {
+        width: 30%;
+        margin: 150px auto 0;
+    }
+}
+
+@media all and (min-width: 1201px){
+    .Home {
+        width: 20%;
+        margin: 200px auto 0;
+    }
 }
 
 .Home header {
@@ -38,15 +61,16 @@
 
 .Home ul {
     list-style-type: none;
-    margin: 2% 0;
+    margin: 4% 0;
     padding: 0;
 }
 
 .Home ul li {
     border-bottom: solid 1px #3b4c68;
-    padding-left: 1em;
+    padding-left: 1rem;
+    font-size: 1.2rem;
     position: relative;
-    color: #a6b0d4;
+    color: lightgray;
 }
 
 .Home ul li:hover, .Home a:hover {
@@ -72,6 +96,7 @@
     display: inline-block;
     width: 100%;
     padding: 0.5em 0;
+    text-decoration: none;
 }
 
 .Home ul li:first-child {

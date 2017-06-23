@@ -1,10 +1,33 @@
 .Logo {
     position: static;
     top: 0;
-    margin-left: 15vw;
     padding: 10px;
     background-color: #ffa83c;
     display: inline-block;
+}
+
+@media all and (max-width: 500px){
+    .Logo {
+        margin-left: 5%;
+    }
+}
+
+@media all and (min-width: 501px) and (max-width: 900px){
+    .Logo {
+        margin-left: 15%;
+    }
+}
+
+@media all and (min-width: 901px) and (max-width: 1200px) {
+    .Logo {
+        margin-left: 25%;
+    }
+}
+
+@media all and (min-width: 1201px){
+    .Logo {
+        margin-left: 35%;
+    }
 }
 
 .Logo a {

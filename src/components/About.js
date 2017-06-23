@@ -18,11 +18,11 @@ class About extends Component {
                                     target="_blank"
                                     title="Ray Roman on GitHub"
                                     rel="noopener noreferrer">Ray Roman</a>, made this little game.
-                    Its namesake <em>go-kioku</em> is the honorific form of the words &ldquo;memory&rdquo; or &ldquo;to remember&rdquo; in Japanese.</p>
+                    Its namesake <em>go-kioku</em> is the honorific form of the words &ldquo;memory&rdquo; or &ldquo;remember&rdquo; in Japanese.</p>
                 <p>There are four degrees of difficulty.
                     The first two deal with fairly simple characters, while the latter two have much more complicated characters.</p>
 
-                <h2>Credits</h2>
+                <h1>Credits</h1>
                 <p>Huge credit &amp; inspiration goes to the makers of the <a
                     title="LiquidPro Sketch UI on Behance"
                     rel="noopener noreferrer"
@@ -31,7 +31,10 @@ class About extends Component {
                     Logo credit goes to <it>Cards by <a href="https://thenounproject.com/holamarie"
                                                         rel="noopener noreferrer"
                                                         target="_blank"
-                                                        title="María Villamil from the Noun Project">María Villamil</a> from the Noun Project</it>.
+                                                        title="María Villamil from the Noun Project">María&nbsp;Villamil</a> from the Noun Project</it> (licensed under <a rel="noopener noreferrer"
+                       target="_blank"
+                       title="Creative Commons License"
+                       href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0</a>, colored from original).
                 </p>
             </article>
         )
