@@ -11,15 +11,22 @@ import {Link} from "react-router-dom";
 import "../stylesheets/Home.css";
 
 // Todo: Make logo
+import logo from "../logo.png";
 
 class Home extends Component {
     render() {
         return (
             <article className="Home">
-                <div>Logo goes here.</div>
+                <header>
+                    <a href="/">
+                        <img src={logo} height="100vw" alt="Gokioku logo"/>
+                    </a>
+                </header>
                 <ul>
                     <li><Link to="/easy">Easy</Link></li>
+                    <li><Link to="/medium">Medium</Link></li>
                     <li><Link to="/hard">Hard</Link></li>
+                    <li><Link to="/hell">Hell</Link></li>
                 </ul>
                 <div className="git">
                     <a href="https://github.com/rayroman"

@@ -13,7 +13,7 @@ class App extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route path="/:difficulty"
                        render={({match}) => {
-                           const settings = ["easy", "medium", "hard"]; // may add more later
+                           const settings = ["easy", "medium", "hard", "hell"]; // may add more later
                            const {difficulty} = match.params;
                            return (settings.includes(difficulty)) ?
                                <Board difficulty={difficulty} stars={settings.indexOf(difficulty) + 1}/> :
