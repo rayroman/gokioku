@@ -21,6 +21,9 @@ class Home extends Component {
                     <a href="/">
                         <img src={logo} height="100vw" alt="Gokioku logo"/>
                     </a>
+                    <a id="title" href="/">
+                        <h1>Gokioku</h1>
+                    </a>
                 </header>
                 <ul>
                     <li><Link to="/easy">Easy</Link></li>
