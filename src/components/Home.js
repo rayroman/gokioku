@@ -31,12 +31,17 @@ class Home extends Component {
                     <li><Link to="/hard">Hard</Link></li>
                     <li><Link to="/hell">Hell</Link></li>
                 </ul>
-                <div className="git">
-                    <a href="https://github.com/rayroman"
-                       rel="noopener noreferrer"
-                       target="_blank"
-                       title="GitHub"><FaGithub/></a>
-                </div>
+                <footer>
+                    <div className="about">
+                        <Link to="/about">About</Link>
+                    </div>
+                    <div className="git">
+                        <a href="https://github.com/rayroman"
+                           rel="noopener noreferrer"
+                           target="_blank"
+                           title="GitHub"><FaGithub/></a>
+                    </div>
+                </footer>
             </article>
         )
     }
