@@ -45,26 +45,17 @@ export const count = (state = {total: 0, correct: 0}, action) => {
     }
 };
 
-export const retire = (state = {}, action) => {
+export const retire = (state = [], action) => {
     switch (action.type) {
         case C.RETIRE_CHAR:
             // Detect to see if the character is already retired; if it is, do nothing; if it isn't, turn it to true
-            return (!state[action.payload]) ?
-                Object.assign({}, state, {[action.payload]: true}) :
+            return (!state.includes(action.payload)) ?
+                [...state, action.payload] :
                 state;
-        case C.CREATE_RETIRE:
-            // Payload is an array of characters that should be mapped to values false (no characters are retired at first)
-            let retire = {};
-            action.payload.forEach(char => {
-                retire[char] = false;
-            });
-            return retire;
         case C.RESET_RETIRE:
-            let copy = Object.assign({}, state);
-            Object.keys(copy).forEach(key => {
-                copy[key] = false;
-            });
-            return copy;
+        case C.CREATE_RETIRE:
+            // Payload is an array of characters
+            return [];
         default:
             return state;
     }
@@ -118,6 +109,17 @@ export const active = (state = [], action) => {
     }
 };
 
+export const finished = (state = false, action) => {
+    switch (action.type) {
+        case C.FINISH_GAME:
+            return true;
+        case C.RESET_GAME:
+            return false;
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     difficulty,
     characters,
@@ -125,5 +127,6 @@ export default combineReducers({
     count,
     guess,
     active,
-    errors
+    errors,
+    finished
 });

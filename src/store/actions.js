@@ -50,7 +50,7 @@ export const fetchCharactersAction = difficulty => (dispatch, getState) => {
                 // Create the retire object with the characters we already selected
                 let pureChars = getState().characters;
                 console.assert(typeof pureChars[0] === "string", "Something went wrong pulling characters...");
-                dispatch(createRetireAction(pureChars));
+                dispatch(createRetireAction());
                 dispatch(createActiveAction(pureChars.length * 2));
 
                 dispatch({type: C.CANCEL_FETCHING});
@@ -105,19 +105,20 @@ export const emptyGuessAction = () => ({
 /*
 Retiring cards
  */
-export const retireCharAction = card => ({
+// retire character from the memory game entirely
+export const retireCharAction = char => ({
     type: C.RETIRE_CHAR,
-    payload: card
+    payload: char
 });
 
+// retire the specific card as it appears on the game board
 export const retireCardAction = index => ({
     type: C.RETIRE_CARD,
     payload: index
 });
 
-export const createRetireAction = chars => ({
-    type: C.CREATE_RETIRE,
-    payload: chars
+export const createRetireAction = () => ({
+    type: C.CREATE_RETIRE
 });
 
 export const resetRetireAction = () => ({
@@ -141,6 +142,18 @@ export const activateAction = index => ({
 export const deactivateAction = (index = null) => ({
     type: C.DEACTIVATE_CARD,
     payload: index
+});
+
+/*
+ Handling game completion
+ */
+
+export const finishGameAction = () => ({
+    type: C.FINISH_GAME
+});
+
+export const resetGameAction = () => ({
+    type: C.RESET_GAME
 });
 
 const retireOrDeactivate = (dispatch, state) => card => {
@@ -177,7 +190,7 @@ export const selectionAction = card => (dispatch, getState) => {
         dispatch(tickTotalAction());
 
         // If they're the same and they aren't retired, increment and then retire
-        if (guess[0].char === guess[1].char && !retire[guess[0].char]) {
+        if (guess[0].char === guess[1].char && !retire.includes(guess[0].char)) {
             dispatch(tickCorrectAction());
             dispatch(retireCharAction(guess[0].char));
             setTimeout(() => {
@@ -186,6 +199,11 @@ export const selectionAction = card => (dispatch, getState) => {
                 });
                 dispatch(emptyGuessAction());
             }, 500);
+
+            if (getState().retire.length === getState().characters.length) {
+                // The game is finished!
+                dispatch(finishGameAction());
+            }
         } else {
             setTimeout(() => {
                 guess.forEach(retireOrDeactivate(dispatch, state));

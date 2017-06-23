@@ -25,6 +25,10 @@ const constants = {
     ACTIVATE_CARD: "ACTIVATE_CARD",
     DEACTIVATE_CARD: "DEACTIVATE_CARD",
 
+    // Game is finished
+    FINISH_GAME: "FINISH_GAME",
+    RESET_GAME: "RESET_GAME",
+
     // Error handling
     ADD_ERROR: "ADD_ERROR",
     CLEAR_ERROR: "CLEAR_ERROR"

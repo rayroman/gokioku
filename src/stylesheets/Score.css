@@ -21,6 +21,12 @@
     line-height: 100%;
 }
 
+.Score p.youDidIt {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fa6327;
+}
+
 .Score hr {
     margin: 1rem 0;
     background-color: #3b4c68;

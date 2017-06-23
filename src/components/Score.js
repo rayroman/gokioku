@@ -5,9 +5,11 @@
 
 // React
 import React, {Component} from "react";
+import FaThumbsUp from "react-icons/lib/fa/thumbs-up"
 
 // CSS
 import "../stylesheets/Score.css";
+
 // Redux
 import {connect} from "react-redux";
 
@@ -25,13 +27,21 @@ class Score extends Component {
                     <small>TOTAL</small>
                     <p className="num">{count.total}</p>
                 </div>
+                {
+                    this.props.finished ?
+                        <div>
+                            <p className="youDidIt"><FaThumbsUp style={{verticalAlign: "-3px"}}/> You did it!</p>
+                        </div> :
+                        null
+                }
             </article>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    count: state.count
+    count: state.count,
+    finished: state.finished
 });
 
 export default connect(mapStateToProps)(Score);

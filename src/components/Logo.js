@@ -12,7 +12,7 @@ import "../stylesheets/Logo.css";
 
 // Redux for resetting the state whenever a user is on the game board and goes back
 import {connect} from "react-redux";
-import {deactivateAction, emptyGuessAction, resetAllAction, resetRetireAction} from "../store/actions";
+import {deactivateAction, emptyGuessAction, resetAllAction, resetGameAction, resetRetireAction} from "../store/actions";
 
 class Logo extends Component {
     render() {
@@ -37,6 +37,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(resetAllAction()); // Reset all the counts
         dispatch(deactivateAction()); // Reset all of the cards
         dispatch(resetRetireAction()); // Reset the retired cards
+        dispatch(resetGameAction()); // Reset the whole game
     }
 });
 

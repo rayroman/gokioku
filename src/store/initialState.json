@@ -1,12 +1,13 @@
 {
   "difficulty": "EASY",
   "characters": [],
-  "retire": {},
+  "retire": [],
   "count": {
     "total": 0,
     "correct": 0
   },
   "guess": [],
   "active": [],
-  "errors": []
+  "errors": [],
+  "finished": false
 }
