@@ -4,10 +4,14 @@
  */
 
 import storeFactory from "../index";
-import {fetchCharactersAction, addErrorAction, clearErrorAction} from "../actions";
+import {
+    fetchCharactersAction, addErrorAction, clearErrorAction, pushSelectionAction,
+    emptySelectionAction
+} from "../actions";
 import C from "../constants";
 import nock from "nock";
 import fetch from "isomorphic-fetch";
+import {incrementCount} from "../../selectors/index";
 
 describe("API fetch", () => {
     let store, diff, currState;
@@ -77,5 +81,85 @@ describe("Error handling", () => {
         store.dispatch(clearErrorAction(0));
         expect(store.getState().errors.length).toBe(1);
         expect(store.getState().errors[0]).toBe("Database not available");
+    });
+});
+
+describe("Selections", () => {
+    let store, chars = ["a", "b"], state;
+    beforeEach(() => {
+        store = storeFactory({
+            selection: [],
+            retire: {
+                "a": false,
+                "b": false
+            },
+            count: {
+                total: 0,
+                correct: 0
+            }
+        });
+    });
+
+    test("adding a single selection", () => {
+        expect.assertions(2);
+        store.dispatch(pushSelectionAction(chars[0]));
+        state = store.getState();
+        expect(state.count.total).toBe(0);
+        expect(state.selection.length).toBe(1);
+    });
+
+    test("adding two dissimilar selections", () => {
+        expect.assertions(2);
+        store.dispatch(pushSelectionAction(chars[0]));
+        store.dispatch(pushSelectionAction(chars[1]));
+        state = store.getState();
+
+        // Use the selector
+        incrementCount(state);
+
+        expect(state.count).toMatchObject({correct: 0, total: 1});
+        expect(state.selection.length).toBe(2);
+    });
+
+    test("adding two similar selections", () => {
+        expect.assertions(2);
+        store.dispatch(pushSelectionAction(chars[0]));
+        store.dispatch(pushSelectionAction(chars[0]));
+        state = store.getState();
+
+        incrementCount(state);
+
+        expect(state.count).toMatchObject({correct: 1, total: 1});
+        expect(state.retire).toMatchObject({"a": true, "b": false});
+    });
+
+    test("adding more than two selections", () => {
+        store.dispatch(pushSelectionAction(chars[0]));
+        store.dispatch(pushSelectionAction(chars[0]));
+        store.dispatch(pushSelectionAction(chars[0]));
+
+        expect(store.getState().selection.length).toBe(2);
+    });
+
+    test("adding two already-retired similar selections", () => {
+        expect.assertions(2);
+        for (let i = 0; i < 2; i++) {
+            store.dispatch(pushSelectionAction(chars[0]));
+            store.dispatch(pushSelectionAction(chars[0]));
+            state = store.getState();
+
+            incrementCount(state);
+            store.dispatch(emptySelectionAction());
+        }
+        state = store.getState();
+        expect(state.count).toMatchObject({correct: 1, total: 2});
+        expect(state.retire).toMatchObject({"a": true, "b": false});
+    });
+
+    test("clearing selections", () => {
+        store.dispatch(pushSelectionAction(chars[0]));
+        store.dispatch(emptySelectionAction());
+
+        expect(store.getState().selection.length).toBe(0);
     });
 });
