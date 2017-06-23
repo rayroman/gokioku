@@ -46,7 +46,7 @@ export const correct = (state = 0, action) => (
 
 export const retire = (state = {}, action) => {
     switch (action.type) {
-        case C.RETIRE_CARD:
+        case C.RETIRE_CHAR:
             // Detect to see if the character is already retired; if it is, do nothing; if it isn't, turn it to true
             return (!state[action.payload]) ?
                 Object.assign({}, state, {[action.payload]: true}) :
@@ -96,9 +96,16 @@ export const active = (state = [], action) => {
         case C.ACTIVATE_CARD:
             state[action.payload] = true;
             return state;
-        case C.DEACTIVATE_CARD:
-            state[action.payload] = false;
+        case C.RETIRE_CARD:
+            state[action.payload] = 1;
             return state;
+        case C.DEACTIVATE_CARD:
+            if (action.payload) {
+                state[action.payload] = false;
+                return state;
+            } else {
+                return new Array(action.payload).fill(false);
+            }
         default:
             return state;
     }

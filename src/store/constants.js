@@ -17,6 +17,7 @@ const constants = {
     // Clicking the cards
     PUSH_GUESS: "PUSH_GUESS",
     EMPTY_GUESS: "EMPTY_GUESS",
+    RETIRE_CHAR: "RETIRE_CHAR",
     RETIRE_CARD: "RETIRE_CARD",
     CREATE_RETIRE: "CREATE_RETIRE",
     CREATE_ACTIVE: "CREATE_ACTIVE",

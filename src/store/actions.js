@@ -105,9 +105,14 @@ export const emptyGuessAction = () => ({
 /*
 Retiring cards
  */
-export const retireCardAction = card => ({
-    type: C.RETIRE_CARD,
+export const retireCharAction = card => ({
+    type: C.RETIRE_CHAR,
     payload: card
+});
+
+export const retireCardAction = index => ({
+    type: C.RETIRE_CARD,
+    payload: index
 });
 
 export const createRetireAction = chars => ({
@@ -129,40 +134,59 @@ export const activateAction = index => ({
     payload: index
 });
 
-export const deactivateAction = index => ({
+export const deactivateAction = (index = null) => ({
     type: C.DEACTIVATE_CARD,
     payload: index
 });
 
+const retireOrDeactivate = (dispatch, state) => card => {
+    if (!state.retire[card.char]) {
+        dispatch(deactivateAction(card.index));
+    } else {
+        dispatch(retireCardAction(card.index));
+    }
+};
+
 export const selectionAction = card => (dispatch, getState) => {
     // Before card is added
     let state = getState();
-    if (state.selection.length === 1) {
-        if (state.selection.filter(s => s.index === card.index).length > 0) {
+    if (state.guess.length === 1) {
+        if (state.guess.filter(s => s.index === card.index).length > 0) {
             // it's the same card that's begin added...remove it
+            retireOrDeactivate(dispatch, state)(card);
             dispatch(emptyGuessAction());
         } else {
             // Card is added. Now the state is different
+            dispatch(activateAction(card.index));
             dispatch(pushGuessAction(card));
         }
-    } else if (state.selection.length === 0) {
+    } else if (state.guess.length === 0) {
+        console.log(4);
+        dispatch(activateAction(card.index));
         dispatch(pushGuessAction(card));
     }
 
     // After card is added
     state = getState();
-    const {selection: sel, retire} = state;
-    if (sel.length === 2) {
+    const {guess, retire} = state;
+    if (guess.length === 2) {
         // Increment the count
         dispatch(tickTotalAction());
 
         // If they're the same and they aren't retired, increment and then retire
-        if (sel[0].item === sel[1].item && !retire[sel[0].item]) {
+        if (guess[0].char === guess[1].char && !retire[guess[0].char]) {
             dispatch(tickCorrectAction());
-            dispatch(retireCardAction(sel[0].item));
+            dispatch(retireCharAction(guess[0].char));
+            guess.forEach(card => {
+                dispatch(retireCardAction(card.index));
+            });
+            dispatch(emptyGuessAction());
+        } else {
+            setTimeout(() => {
+                guess.forEach(retireOrDeactivate(dispatch, state));
+                dispatch(emptyGuessAction());
+            }, 1000);
         }
-
-        dispatch(emptyGuessAction());
     }
 
     return "done";

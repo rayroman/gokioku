@@ -5,18 +5,44 @@
 // React stuff
 import React, {Component} from "react";
 
+// Redux stuff
+import {connect} from "react-redux";
+import {selectionAction} from "../store/actions";
 
+// CSS
+import "../stylesheets/Card.css";
 /*
 Card: contains the character in the char field. Must have
  */
 class Card extends Component {
     render() {
         return (
-            <div className="cardbox">
-                <span className="char">{this.props.char}</span>
+            <div className="Card"
+                 onClick={async () => {
+                     let {char, index} = this.props;
+                     await this.props.pickCard({char, index});
+                 }}
+            >
+                <span className={`char ${
+                    this.props.active === true ?
+                        "active" :
+                        this.props.active === 1 ?
+                            "retired" :
+                            ""
+                }`}>{this.props.char}</span>
             </div>
         )
     }
 }
 
-export default Card;
+const mapStateToProps = (state, props) => ({
+    active: state.active[props.index]
+});
+
+const mapDispatchToProps = dispatch => ({
+    pickCard(card) {
+        dispatch(selectionAction(card))
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
