@@ -23,10 +23,7 @@ export const characters = (state = [], action) => {
             let index = Math.random() * len | 0;
             [p.characters[index], p.characters[len - 1]] = [p.characters[len - 1], p.characters[index]];
 
-            cards.push({
-                char: p.characters.pop(),
-                selected: false
-            });
+            cards.push(p.characters.pop());
         }
 
         return cards;

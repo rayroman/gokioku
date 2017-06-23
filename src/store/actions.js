@@ -48,7 +48,7 @@ export const fetchCharactersAction = difficulty => (dispatch, getState) => {
                 dispatch(setCharactersAction(doc));
 
                 // Create the retire object with the characters we already selected
-                let pureChars = getState().characters.map(item => item.char);
+                let pureChars = getState().characters;
                 console.assert(typeof pureChars[0] === "string", "Something went wrong pulling characters...");
                 dispatch(createRetireAction(pureChars));
 
@@ -76,6 +76,10 @@ Modifying the counts
 
 export const tickTotalAction = () => ({
     type: C.INCREMENT_TOTAL
+});
+
+export const tickCorrectAction = () => ({
+    type: C.INCREMENT_CORRECT
 });
 
 export const resetTotalAction = () => ({
@@ -109,3 +113,41 @@ export const createRetireAction = chars => ({
     type: C.CREATE_RETIRE,
     payload: chars
 });
+
+/*
+Handling all of the pushing selection action
+ */
+
+export const selectionAction = card => (dispatch, getState) => {
+    // Before card is added
+    let state = getState();
+    if (state.selection.length === 1) {
+        if (state.selection.filter(s => s.index === card.index).length > 0) {
+            // it's the same card that's begin added...remove it
+            dispatch(emptySelectionAction());
+        } else {
+            // Card is added. Now the state is different
+            dispatch(pushSelectionAction(card));
+        }
+    } else if (state.selection.length === 0) {
+        dispatch(pushSelectionAction(card));
+    }
+
+    // After card is added
+    state = getState();
+    const {selection: sel, retire} = state;
+    if (sel.length === 2) {
+        // Increment the count
+        dispatch(tickTotalAction());
+
+        // If they're the same and they aren't retired, increment and then retire
+        if (sel[0].item === sel[1].item && !retire[sel[0].item]) {
+            dispatch(tickCorrectAction());
+            dispatch(retireCardAction(sel[0].item));
+        }
+
+        dispatch(emptySelectionAction());
+    }
+
+    return "done";
+};

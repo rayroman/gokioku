@@ -1,0 +1,27 @@
+.Card {
+    background-color: #293246;
+    border-radius: 3px;
+    border: solid 1px #82889e;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.char {
+    font-size: 2em;
+    padding: 0.5em;
+    line-height: 1em;
+    height: inherit;
+    visibility: hidden;
+}
+
+.active {
+    background-color: #ffa83c;
+    color: #1d2636;
+    visibility: visible;
+}
+
+.retired {
+    visibility: visible;
+}

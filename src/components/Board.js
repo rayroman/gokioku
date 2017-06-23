@@ -15,6 +15,7 @@ import "../stylesheets/Board.css";
 // Redux
 import {fetchCharactersAction} from "../store/actions";
 import {connect} from "react-redux";
+import CardList from "./CardList";
 
 // Pure React
 class Board extends Component {
@@ -64,7 +65,7 @@ class Board extends Component {
                     {this.makeStars()}
                 </div>
                 <section>
-
+                    <CardList boardItems={this.state.boardItems}/>
                 </section>
                 <section>
 

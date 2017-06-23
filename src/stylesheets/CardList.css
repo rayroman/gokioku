@@ -1,0 +1,13 @@
+.CardList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.CardList li {
+    margin: 0.2em;
+    display: inline-block;
+    flex-shrink: 2;
+}

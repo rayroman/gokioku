@@ -11,6 +11,25 @@ const getSelection = state => state.selection;
 const getCount = state => state.count;
 const getRetire = state => state.retire;
 
+
+export const modifySelection = card => createSelector(
+    [getSelection],
+    (selection) => {
+        if (selection.length === 1) {
+            // If the card is the same
+            if (selection.filter(s => s.index === card.index).length > 0) {
+                return [];
+            } else {
+                return [...selection, card];
+            }
+        } else if (selection.length === 2) {
+            return [];
+        } else {
+            return [...selection];
+        }
+    }
+);
+
 export const incrementCount = createSelector(
     [getSelection, getCount, getRetire],
     (selection, count, retire) => {
