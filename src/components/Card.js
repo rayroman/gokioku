@@ -27,7 +27,7 @@ class Card extends Component {
                     this.props.active === true ?
                         "active" :
                         this.props.active === 1 ?
-                            "retired" :
+                            "retired-" + this.props.difficulty.toLowerCase() :
                             ""
                 }`}>{this.props.char}</span>
             </div>
@@ -36,6 +36,7 @@ class Card extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
+    difficulty: state.difficulty,
     active: state.active[props.index]
 });
 

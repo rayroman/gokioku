@@ -16,6 +16,7 @@ import "../stylesheets/Board.css";
 import {fetchCharactersAction} from "../store/actions";
 import {connect} from "react-redux";
 import CardList from "./CardList";
+import Score from "./Score";
 
 // Pure React
 class Board extends Component {
@@ -69,7 +70,7 @@ class Board extends Component {
                         <CardList boardItems={this.state.boardItems}/>
                     </div>
                     <div className="score">
-                        Hello world! Hello world! Hello world! Hello world!
+                        <Score/>
                     </div>
                 </section>
             </article>

@@ -161,7 +161,6 @@ export const selectionAction = card => (dispatch, getState) => {
             dispatch(pushGuessAction(card));
         }
     } else if (state.guess.length === 0) {
-        console.log(4);
         dispatch(activateAction(card.index));
         dispatch(pushGuessAction(card));
     }
@@ -177,15 +176,17 @@ export const selectionAction = card => (dispatch, getState) => {
         if (guess[0].char === guess[1].char && !retire[guess[0].char]) {
             dispatch(tickCorrectAction());
             dispatch(retireCharAction(guess[0].char));
-            guess.forEach(card => {
-                dispatch(retireCardAction(card.index));
-            });
-            dispatch(emptyGuessAction());
+            setTimeout(() => {
+                guess.forEach(card => {
+                    dispatch(retireCardAction(card.index));
+                });
+                dispatch(emptyGuessAction());
+            }, 500);
         } else {
             setTimeout(() => {
                 guess.forEach(retireOrDeactivate(dispatch, state));
                 dispatch(emptyGuessAction());
-            }, 1000);
+            }, 500);
         }
     }
 
