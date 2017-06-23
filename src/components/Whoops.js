@@ -4,7 +4,7 @@
  */
 
 import React, {Component} from "react";
-import "../stylesheets/Whoops.css";
+import "../stylesheets/Pages.css";
 
 class Whoops extends Component {
     render() {

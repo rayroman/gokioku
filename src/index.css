@@ -30,3 +30,11 @@ code {
   font-size: 1.1rem;
   color: #ffa83c;
 }
+
+a {
+  color: #ffa83c;
+}
+
+a:hover {
+  color: #fa6327;
+}

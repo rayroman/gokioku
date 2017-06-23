@@ -35,7 +35,7 @@ class Home extends Component {
                     <a href="https://github.com/rayroman"
                        rel="noopener noreferrer"
                        target="_blank"
-                       alt="GitHub"><FaGithub/></a>
+                       title="GitHub"><FaGithub/></a>
                 </div>
             </article>
         )

@@ -1,8 +1,8 @@
-.Whoops {
+.Whoops, .About {
     width: 30%;
     margin: 300px auto 0;
 }
 
-.Whoops p {
+.Whoops p, .About p {
     color: #a6b0d4;
 }
