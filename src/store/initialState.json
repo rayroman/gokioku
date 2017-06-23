@@ -6,6 +6,7 @@
     "total": 0,
     "correct": 0
   },
-  "selection": [],
+  "guess": [],
+  "active": [],
   "errors": []
 }

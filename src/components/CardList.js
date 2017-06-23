@@ -7,10 +7,6 @@
 import React, {Component} from "react";
 import Card from "./Card";
 
-// Redux
-import {connect} from "react-redux";
-import {emptySelectionAction, pushSelectionAction, selectionAction} from "../store/actions";
-
 // CSS
 import "../stylesheets/CardList.css";
 

@@ -63,15 +63,15 @@ export const retire = (state = {}, action) => {
     }
 };
 
-export const selection = (state = [], action) => {
+export const guess = (state = [], action) => {
     switch (action.type) {
-        case C.PUSH_SELECTION:
+        case C.PUSH_GUESS:
             if (state.length < 2) {
                 return [...state, action.payload];
             } else {
                 return state;
             }
-        case C.EMPTY_SELECTION:
+        case C.EMPTY_GUESS:
             return [];
         default:
             return state;
@@ -89,6 +89,21 @@ export const errors = (state = [], action) => {
     }
 };
 
+export const active = (state = [], action) => {
+    switch (action.type) {
+        case C.CREATE_ACTIVE:
+            return new Array(action.payload).fill(false);
+        case C.ACTIVATE_CARD:
+            state[action.payload] = true;
+            return state;
+        case C.DEACTIVATE_CARD:
+            state[action.payload] = false;
+            return state;
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     difficulty,
     characters,
@@ -97,6 +112,7 @@ export default combineReducers({
         total,
         correct
     }),
-    selection,
+    guess,
+    active,
     errors
 });
