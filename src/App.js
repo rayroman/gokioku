@@ -15,16 +15,19 @@ class App extends Component {
                 <Route path="/:p" children={({match}) => {
                     const settings = ["easy", "medium", "hard", "hell"];
                     let {p} = match.params;
-                    let compToRender;
+                    let compToRender, pageType;
                     if (p === "about") {
+                        pageType = "pages";
                         compToRender = <About/>;
                     } else if (settings.includes(p)) {
+                        pageType = "board";
                         compToRender = <Board difficulty={p} stars={settings.indexOf(p) + 1}/>;
                     } else {
+                        pageType = "pages";
                         compToRender = <Whoops match={match}/>
                     }
                     return (
-                        <Logo>
+                        <Logo pageType={pageType}>
                             {compToRender}
                         </Logo>
                     )

@@ -27,13 +27,13 @@ class Score extends Component {
                     <small>TOTAL</small>
                     <p className="num">{count.total}</p>
                 </div>
-                {
-                    this.props.finished ?
-                        <div>
-                            <p className="youDidIt"><FaThumbsUp style={{verticalAlign: "-3px"}}/> You did it!</p>
-                        </div> :
-                        null
-                }
+                <div className="youDidIt">
+                    {
+                        this.props.finished ?
+                            <p><FaThumbsUp style={{verticalAlign: "-3px"}}/> Great!</p> :
+                            <p>&nbsp;</p>
+                    }
+                </div>
             </article>
         )
     }

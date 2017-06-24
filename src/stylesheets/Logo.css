@@ -19,14 +19,26 @@
 }
 
 @media all and (min-width: 901px) and (max-width: 1200px) {
-    .Logo {
+    .Logo.pages {
         margin-left: 25%;
+    }
+
+    .Logo.board {
+        margin-left: 12%;
     }
 }
 
-@media all and (min-width: 1201px){
-    .Logo {
+/*
+grouped
+ */
+
+@media all and (min-width: 1201px) {
+    .Logo.pages {
         margin-left: 35%;
+    }
+    
+    .Logo.board {
+        margin-left: 18%;
     }
 }
 

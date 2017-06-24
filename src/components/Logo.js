@@ -18,7 +18,7 @@ class Logo extends Component {
     render() {
         return (
             <div>
-                <nav className="Logo">
+                <nav className={`Logo ${this.props.pageType}`}>
                     <Link to="/"
                           onClick={() => {
                               this.props.reset();

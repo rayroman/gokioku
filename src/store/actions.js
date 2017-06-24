@@ -157,7 +157,7 @@ export const resetGameAction = () => ({
 });
 
 const retireOrDeactivate = (dispatch, state) => card => {
-    if (!state.retire[card.char]) {
+    if (!state.retire.includes(card.char)) {
         dispatch(deactivateAction(card.index));
     } else {
         dispatch(retireCardAction(card.index));

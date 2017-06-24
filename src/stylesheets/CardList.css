@@ -6,12 +6,6 @@
     display: flex;
 }
 
-.CardList li {
-    margin: 0.2em;
-    display: inline-block;
-    flex-shrink: 2;
-}
-
 .CardList .loading {
     height: 100%;
 }

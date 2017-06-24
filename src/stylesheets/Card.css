@@ -1,9 +1,48 @@
 .Card {
     background-color: #293246;
-    margin: 5px;
     flex: 1 0 auto;
     position: relative;
     cursor: pointer;
+}
+
+@media all and (max-width: 500px) {
+    .char {
+        font-size: 8vw;
+    }
+}
+
+@media all and (min-width: 501px) and (max-width: 900px){
+    .char {
+        font-size: 6vw;
+    }
+}
+
+@media all and (min-width: 901px) and (max-width: 1200px){
+    .char {
+        font-size: 4.5vw;
+    }
+}
+
+@media all and (min-width: 1201px){
+    .char {
+        font-size: 3vw;
+    }
+}
+
+/*
+Grouped media queries
+ */
+
+@media all and (max-width: 1200px){
+    .Card {
+        margin: 3px;
+    }
+}
+
+@media all and (min-width: 1201px){
+    .Card {
+        margin: 5px;
+    }
 }
 
 .Card, .char, .active {
@@ -18,7 +57,6 @@
 }
 
 .char {
-    font-size: 3vw;
     position: absolute;
     left: 0;
     right: 0;
