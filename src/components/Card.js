@@ -18,9 +18,13 @@ class Card extends Component {
     render() {
         return (
             <div className="Card"
-                 onClick={async () => {
-                     let {char, index} = this.props;
-                     await this.props.pickCard({char, index});
+                 onClick={() => {
+                     if (!this.props.isUpdatingStyle) {
+                         let {char, index} = this.props;
+                         this.props.pickCard({char, index});
+                     } else {
+                         console.log("slow down there!");
+                     }
                  }}
             >
                 <span className={`char ${
@@ -37,7 +41,8 @@ class Card extends Component {
 
 const mapStateToProps = (state, props) => ({
     difficulty: state.difficulty,
-    active: state.active[props.index]
+    active: state.active[props.index],
+    isUpdatingStyle: state.isUpdatingStyle
 });
 
 const mapDispatchToProps = dispatch => ({

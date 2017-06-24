@@ -71,15 +71,13 @@ Grouped media queries
 .active {
     background-color: #ffa83c;
     color: black;
-    opacity: 1;
     visibility: visible;
 }
 
 .retired-easy, .retired-medium {
-    opacity: 1;
     visibility: visible;
 }
 
 .retired-hard, .retired-hell {
-
+    /*Hehe*/
 }

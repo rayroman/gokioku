@@ -26,6 +26,12 @@
     }
 }
 
+@media all and (max-height: 800px) {
+    .Home {
+        margin-top: 75px;
+    }
+}
+
 .Home header {
     text-align: center;
     width: 100%;

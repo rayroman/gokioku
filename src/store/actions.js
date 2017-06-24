@@ -129,6 +129,11 @@ export const resetRetireAction = () => ({
 Handling all of the pushing selection action + styling
  */
 
+export const updateStyleAction = (isUpdating = false) => ({
+    type: C.IS_UPDATING_STYLE,
+    payload: isUpdating
+});
+
 export const createActiveAction = num => ({
     type: C.CREATE_ACTIVE,
     payload: num
@@ -193,11 +198,13 @@ export const selectionAction = card => (dispatch, getState) => {
         if (guess[0].char === guess[1].char && !retire.includes(guess[0].char)) {
             dispatch(tickCorrectAction());
             dispatch(retireCharAction(guess[0].char));
+            dispatch(updateStyleAction(true));
             setTimeout(() => {
                 guess.forEach(card => {
                     dispatch(retireCardAction(card.index));
                 });
                 dispatch(emptyGuessAction());
+                dispatch(updateStyleAction(false));
             }, 500);
 
             if (getState().retire.length === getState().characters.length) {
@@ -205,11 +212,15 @@ export const selectionAction = card => (dispatch, getState) => {
                 dispatch(finishGameAction());
             }
         } else {
+            dispatch(updateStyleAction(true));
             setTimeout(() => {
                 guess.forEach(retireOrDeactivate(dispatch, state));
                 dispatch(emptyGuessAction());
+                dispatch(updateStyleAction(false));
             }, 500);
         }
+    } else if (guess.length > 2) {
+        console.warn("We have a problem...");
     }
 
     return "done";

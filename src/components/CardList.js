@@ -10,9 +10,6 @@ import Card from "./Card";
 // CSS
 import "../stylesheets/CardList.css";
 
-// Redux stuff
-import {connect} from "react-redux";
-
 // Responsive grid: separate into x rows containing x cells; x comes from number of elements
 class CardList extends Component {
     render() {

@@ -3,7 +3,6 @@
  * Homepage: has the logo and difficulty settings.
  */
 import React, {Component} from "react";
-import {Route, Switch} from "react-router";
 import FaGithub from "react-icons/lib/fa/github";
 import {Link} from "react-router-dom";
 

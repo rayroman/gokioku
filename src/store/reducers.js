@@ -120,6 +120,12 @@ export const finished = (state = false, action) => {
     }
 };
 
+export const isUpdatingStyle = (state = false, action) => (
+    (action.type === C.IS_UPDATING_STYLE) ?
+        action.payload :
+        state
+);
+
 export default combineReducers({
     difficulty,
     characters,
@@ -128,5 +134,6 @@ export default combineReducers({
     guess,
     active,
     errors,
-    finished
+    finished,
+    isUpdatingStyle
 });

@@ -8,7 +8,6 @@ import './index.css';
 import {Provider} from "react-redux";
 import storeFactory from "./store/index";
 import init from "./store/initialState.json"
-import Home from "./components/Home";
 
 // Router stuff
 import {Router} from "react-router";

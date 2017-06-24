@@ -9,5 +9,6 @@
   "guess": [],
   "active": [],
   "errors": [],
-  "finished": false
+  "finished": false,
+  "isUpdatingStyle": false
 }

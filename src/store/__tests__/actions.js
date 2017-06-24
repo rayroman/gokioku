@@ -5,13 +5,11 @@
 
 import storeFactory from "../index";
 import {
-    fetchCharactersAction, addErrorAction, clearErrorAction, pushGuessAction,
+    fetchCharactersAction, addErrorAction, clearErrorAction,
     emptyGuessAction, selectionAction, resetAllAction, tickCorrectAction, tickTotalAction
 } from "../actions";
-import C from "../constants";
 import nock from "nock";
 import fetch from "isomorphic-fetch";
-import {incrementCount} from "../../selectors/index";
 
 describe("API fetch", () => {
     let store, diff, currState;
