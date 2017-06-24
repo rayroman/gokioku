@@ -1,1 +1,1 @@
-Testing deployment on Heroku.
+A fun flashcard game that uses Chinese characters. [Check it out!](http://gokioku.herokuapp.com)
