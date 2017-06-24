@@ -65,7 +65,7 @@ Grouped media queries
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.1;
+    visibility: hidden;
 }
 
 .active {

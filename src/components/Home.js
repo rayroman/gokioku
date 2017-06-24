@@ -11,7 +11,7 @@ import {Link} from "react-router-dom";
 import "../stylesheets/Home.css";
 
 // Todo: Make logo
-import logo from "../logo.png";
+import logo from "../icons/logo.png";
 
 class Home extends Component {
     render() {
