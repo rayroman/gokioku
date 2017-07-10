@@ -1,16 +1,18 @@
 /**
  * Created by rroman681 on 6/22/17.
  * Board: contains grid of cards on the left side and counts on the right side.
- * Todo: make Card, CardList, Counts
- * Todo styling: responsive component
  */
 
 // React
 import React, {Component} from "react";
 import FaAsterisk from "react-icons/lib/fa/asterisk";
 
-// CSS
-import "../../stylesheets/Board.css";
+// Styles
+import BoardWrapper from "../../components/Board";
+import Difficulty from "../../components/Board/Difficulty";
+import Main from "../../components/Board/Main";
+import GridWrapper from "../../components/Board/Grid";
+import ScoreWrapper from "../../components/Board/Score";
 
 // Redux
 import {fetchCharactersAction} from "../../store/actions";
@@ -47,31 +49,21 @@ class Board extends Component {
       });
   }
 
-  makeStars() {
-    return (
-      <ul className="rating">
-        {new Array(this.props.stars).fill(undefined).map((_, index) => <FaAsterisk key={index}/>)}
-      </ul>
-    )
-  }
-
   render() {
-    const {difficulty} = this.props;
+    const {difficulty, stars} = this.props;
     return (
-      <article className="Board">
-        <header id="difficulty">
-          <h1>{difficulty}</h1>
-          {this.makeStars()}
-        </header>
-        <section id="main">
-          <div className="grid">
+      <BoardWrapper>
+        <Difficulty stars={stars}
+                    difficulty={difficulty}/>
+        <Main>
+          <GridWrapper>
             <CardList boardItems={this.state.boardItems}/>
-          </div>
-          <div className="score">
+          </GridWrapper>
+          <ScoreWrapper>
             <Score/>
-          </div>
-        </section>
-      </article>
+          </ScoreWrapper>
+        </Main>
+      </BoardWrapper>
     )
   }
 }
