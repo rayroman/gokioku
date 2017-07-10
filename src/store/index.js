@@ -8,5 +8,5 @@ import thunk from "redux-thunk";
 import appReducer from "./reducers";
 
 export default (initialState = {}) => {
-    return applyMiddleware(thunk)(createStore)(appReducer, initialState);
+  return applyMiddleware(thunk)(createStore)(appReducer, initialState);
 };

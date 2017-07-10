@@ -17,10 +17,10 @@ const store = storeFactory(init);
 
 // Initialize the app
 render(
-    <Provider store={store}>
-        <Router history={createBrowserHistory()}>
-            <App/>
-        </Router>
-    </Provider>,
-    document.getElementById('root'));
+  <Provider store={store}>
+    <Router history={createBrowserHistory()}>
+      <App/>
+    </Router>
+  </Provider>,
+  document.getElementById('root'));
 registerServiceWorker();
