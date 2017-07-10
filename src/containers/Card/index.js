@@ -5,36 +5,36 @@
 // React stuff
 import React, {Component} from "react";
 
+
 // Redux stuff
 import {connect} from "react-redux";
 import {selectionAction} from "../../store/actions";
+import Flashcard from "../../components/Flashcard/index";
+import Char from "../../components/Flashcard/Char";
 
 // CSS
-import "../../stylesheets/Card.css";
+// import "../../stylesheets/Card.css";
 /*
  Card: contains the character in the char field. Must have
  */
 class Card extends Component {
   render() {
+    let {difficulty, active, char} = this.props;
     return (
-      <div className="Card"
-           onClick={() => {
-             if (!this.props.isUpdatingStyle) {
-               let {char, index} = this.props;
-               this.props.pickCard({char, index});
-             } else {
-               console.log("slow down there!");
-             }
-           }}
-      >
-                <span className={`char ${
-                  this.props.active === true ?
-                    "active" :
-                    this.props.active === 1 ?
-                      "retired-" + this.props.difficulty.toLowerCase() :
-                      ""
-                  }`}>{this.props.char}</span>
-      </div>
+      <Flashcard active={active}
+                 onClick={() => {
+                    if (!this.props.isUpdatingStyle) {
+                      let {char, index} = this.props;
+                      this.props.pickCard({char, index});
+                    } else {
+                      console.log("slow down there!");
+                    }
+                  }}>
+        <Char active={active}
+              difficulty={difficulty}>
+          {char}
+        </Char>
+      </Flashcard>
     )
   }
 }

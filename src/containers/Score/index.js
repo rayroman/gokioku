@@ -6,35 +6,30 @@
 // React
 import React, {Component} from "react";
 import FaThumbsUp from "react-icons/lib/fa/thumbs-up"
-
-// CSS
-import "../../stylesheets/Score.css";
+import Scorecard from "../../components/Scorecard/index";
+import Count from "../../components/Scorecard/Count";
+import Rule from "../../components/Scorecard/Rule";
+import GoodJob from "../../components/Scorecard/GoodJob";
 
 // Redux
 import {connect} from "react-redux";
 
 class Score extends Component {
   render() {
-    const {count} = this.props;
+    const {count, finished} = this.props;
     return (
-      <article className="Score">
-        <div className="correct">
-          <small>CORRECT</small>
-          <p className="num">{count.correct}</p>
-        </div>
-        <hr/>
-        <div className="total">
-          <small>TOTAL</small>
-          <p className="num">{count.total}</p>
-        </div>
-        <div className="youDidIt">
-          {
-            this.props.finished ?
-              <p><FaThumbsUp style={{verticalAlign: "-3px"}}/> Great!</p> :
-              <p>&nbsp;</p>
-          }
-        </div>
-      </article>
+      <Scorecard>
+        <Count title="Correct" count={count.correct}/>
+        <Rule/>
+        <Count title="Total" count={count.total}/>
+        {
+          finished ?
+            <GoodJob>
+              <FaThumbsUp style={{verticalAlign: "-3px"}}/> Great!
+            </GoodJob> :
+            <GoodJob>&nbsp;</GoodJob>
+        }
+      </Scorecard>
     )
   }
 }
