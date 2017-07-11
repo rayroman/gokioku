@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {colors} from "../../global-styles";
 
 const P = styled.p`
-  color: ${colors.darkAccent1};
+  color: ${colors.darkAccent2};
 `;
 
 export default P;

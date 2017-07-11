@@ -3,15 +3,15 @@
  * About page
  */
 // React
-import React, {Component} from "react";
+import React from "react";
 
-// CSS
-// import "../../stylesheets/Pages.css";
+//Styles
+import Wrapper from "../../components/PageWrapper"
 import A from "../../components/A";
 import P from "../../components/P";
 
 const About = () => (
-  <article className="About">
+  <Wrapper>
     <h1>About</h1>
     <P><strong>Gokioku</strong> is a memory matching flashcard game that uses Chinese characters.
       Yours truly, <A href="https://github.com/rayroman"
@@ -39,7 +39,7 @@ const About = () => (
                                                                                                                                                                                    title="Creative Commons License"
                                                                                                                                                                                    href="https://creativecommons.org/licenses/by/3.0/us/">CC&nbsp;BY&nbsp;3.0</A>, both colored from original).
     </P>
-  </article>
+  </Wrapper>
 );
 
 export default About;
